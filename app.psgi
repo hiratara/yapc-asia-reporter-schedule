@@ -15,7 +15,7 @@ my @reporters = do {
 };
 
 my %splited_talks = (
-    '9b5c4d54-f2c6-11e2-ac33-21c36aeab6a4' => 3,
+#    '9b5c4d54-f2c6-11e2-ac33-21c36aeab6a4' => 3,
 );
 
 my @schedules = map { +{
@@ -130,24 +130,24 @@ sub _rows () {
     [map { my $h = $_; map { sprintf "%02d:%02d", $h, $_ * 10 } 0 .. 5 } 0 .. 23];
 }
 
-sub _add_pre_report ($) {
-    my $tables = shift;
-    # Add pre-report
-    unshift @$tables, {
-        date => 16,
-        cols => _cols {1 => 'gihyo.jp'},
-        rows => _rows,
-        table => (my $table = []),
-    };
+# sub _add_pre_report ($) {
+#     my $tables = shift;
+#     # Add pre-report
+#     unshift @$tables, {
+#         date => 16,
+#         cols => _cols {1 => 'gihyo.jp'},
+#         rows => _rows,
+#         table => (my $table = []),
+#     };
 
-    put_into_table $table, {
-        id => 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
-        venue_id => 1,
-        title => "事前レポート",
-        'start_on' => '2013-09-16 00:00:00',
-        duration => 120,
-    };
-}
+#     put_into_table $table, {
+#         id => 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+#         venue_id => 1,
+#         title => "事前レポート",
+#         'start_on' => '2013-09-16 00:00:00',
+#         duration => 120,
+#     };
+# }
 
 sub _fix_table_info ($) {
     my $info = shift;
@@ -223,7 +223,7 @@ for (@schedules) {
     }
 }
 
-_add_pre_report $tables;
+# _add_pre_report $tables;
 _fix_table_info $_ for @$tables;
 
 my $tx = Text::Xslate->new;
