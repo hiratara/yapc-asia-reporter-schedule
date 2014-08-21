@@ -11,7 +11,7 @@ my @reporters = do {
     my $seq = 0;
     map {
         +{id => ++$seq, name => $_};
-    } qw(hiratara moznion risou hiroyukim usuihiro muddydixon ytnobody);
+    } qw(hiratara risou hiroyukim usuihiro muddydixon kusakabe remi);
 };
 
 my %splited_talks = (
