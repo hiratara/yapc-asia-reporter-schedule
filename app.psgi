@@ -21,7 +21,7 @@ my %splited_talks = (
 my @schedules = map { +{
     date => $_,
     url => "http://yapcasia.org/2013/talk/schedule?date=2013-09-$_&format=json",
-} } 19 .. 21;
+} } 28 .. 30;
 
 my $dir = 'data';
 sub save ($) {
