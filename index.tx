@@ -1,5 +1,5 @@
 <head>
-<title>YAPC Asia 2013 reporter board</title>
+<title>YAPC Asia 2014 reporter board</title>
 <style>
 table { 
   border-collapse: collapse;
@@ -55,7 +55,7 @@ td.time {
                 class="talk should-report"
 :             }
           >
-          <a href="http://yapcasia.org/2013/talk/show/<: $talk.id :>"><: $talk.disp_title :></a>
+          <a href="http://yapcasia.org/2014/talk/show/<: $talk.id :>"><: $talk.disp_title :></a>
 <: $talk.reporter_id :>
 
           <form method="POST">
