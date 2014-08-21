@@ -1,0 +1,92 @@
+<head>
+<title>YAPC Asia 2013 reporter board</title>
+<style>
+table { 
+  border-collapse: collapse;
+  border: 1px #005 solid;
+}
+td { 
+  border: 1px #500 solid;
+}
+td.talk { 
+  width: 150px;
+}
+td.time {
+    vertical-align: top;
+}
+
+.should-report {background-color: #CCC;}
+.reporter1 {background-color: #FCC;}
+.reporter2 {background-color: #CFC;}
+.reporter3 {background-color: #CCF;}
+.reporter4 {background-color: #CFF;}
+.reporter5 {background-color: #FCF;}
+.reporter6 {background-color: #FFC;}
+.reporter7 {background-color: #9FF;}
+.reporter8 {background-color: #F9F;}
+.reporter9 {background-color: #FF9;}
+</style>
+</head>
+
+<body>
+
+: for $tables -> $table_info {
+<h1>Day <: $table_info.date :></h1>
+<table>
+<tr>
+  <td>＼</td>
+: for $table_info.cols -> $col {
+    <td class="talk"><: $col :></td>
+: }
+</tr>
+
+:   for $table_info.table -> $row {
+      <tr>
+      <td class="time"><: $table_info.rows[$~row] :></td>
+:     for $row -> $talk {
+:       if $talk == nil {
+          <td> </td>
+:       } else if $talk == 1 {
+:       } else {
+          <td rowspan="<: $talk.span :>"
+:             if $assigned[$talk.id] > 0 {
+                class="talk reporter<: $assigned[$talk.id] :>"
+:             } else {
+                class="talk should-report"
+:             }
+          >
+          <a href="http://yapcasia.org/2013/talk/show/<: $talk.id :>"><: $talk.disp_title :></a>
+<: $talk.reporter_id :>
+
+          <form method="POST">
+          <select name="assign">
+            <option value="<: $talk.id :>/">-</option>
+            : for $reporters -> $reporter {
+                <option value="<: $talk.id :>/<: $reporter.id :>"
+                        <: if $reporter.id == $assigned[$talk.id] { :>selected="selected"<: } :>
+                >
+                <:$reporter.name:>
+                </option>
+            : }
+          </select>
+          <input value="SAVE" type="submit" name="submit">
+          </form>
+          </td>
+:       }
+:     }
+      </tr>
+:   }
+</table>
+: }
+
+<table>
+: for $reporters -> $reporter {
+<tr>
+<td><: $reporter.name :></td>
+<td><: $summary_reporter[$reporter.id]["duration"] :> min</td>
+<td><: $summary_reporter[$reporter.id]["ratio"] :> %</td>
+</tr>
+: }
+</table>
+
+</body>
