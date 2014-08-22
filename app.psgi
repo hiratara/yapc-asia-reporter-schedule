@@ -15,7 +15,8 @@ my @reporters = do {
 };
 
 my %splited_talks = (
-#    '9b5c4d54-f2c6-11e2-ac33-21c36aeab6a4' => 3,
+    'bc6052f4-0c8b-11e4-aec0-ad686aeab6a4' => 3,
+    '85f8f5de-0c8d-11e4-bd05-9c796aeab6a4' => 3,
 );
 
 my @schedules = map { +{
