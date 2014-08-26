@@ -56,6 +56,7 @@ td.time {
 :             }
           >
           <a href="http://yapcasia.org/2014/talk/show/<: $talk.id :>"><: $talk.disp_title :></a>
+          <div style="font-size: xx-small;"><: $talk.speaker.name :></div>
 <: $talk.reporter_id :>
 
           <form method="POST">
