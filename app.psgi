@@ -218,7 +218,7 @@ for (@schedules) {
         table => (my $table = []),
     };
 
-    for my $talks (@{$json->{talks_by_venue}}) {
+    for my $talks (@{$json->{talks_by_venue}}, @{$json->{events_by_venue}}) {
         _split_talks $talks;
         put_into_table $table, $_ for @$talks;
     }
