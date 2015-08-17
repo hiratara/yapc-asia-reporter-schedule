@@ -7,11 +7,13 @@ use Text::Xslate;
 use JSON ();
 use utf8;
 
+$LWP::Simple::ua->agent("X"); # DORA PERSON--
+
 my @reporters = do {
     my $seq = 0;
     map {
         +{id => ++$seq, name => $_};
-    } qw(hiratara risou hiroyukim usuihiro muddydixon kusakabe remi);
+    } qw(hiratara risou hiroyukim usuihiro yasutake nakamura tajitsu aoki ochi shimizu noda);
 };
 
 my %splited_talks = (
@@ -19,12 +21,14 @@ my %splited_talks = (
     '85f8f5de-0c8d-11e4-bd05-9c796aeab6a4' => 3,
     '84b4d20a-0c8e-11e4-bd05-9c796aeab6a4' => 2,
     '63144efa-0c8e-11e4-bd05-9c796aeab6a4' => 2,
+    '22957e9c-1872-11e5-aca1-525412004261' => 2,
+    '69caedbd-1872-11e5-aca1-525412004261' => 2,
 );
 
 my @schedules = map { +{
     date => $_,
-    url => "http://yapcasia.org/2014/talk/schedule?date=2014-08-$_&format=json",
-} } 28 .. 30;
+    url => "http://yapcasia.org/2015/talk/schedule?date=2015-08-$_&format=json",
+} } 20 .. 22;
 
 my $dir = 'data';
 sub save ($) {
