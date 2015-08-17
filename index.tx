@@ -25,6 +25,8 @@ td.time {
 .reporter7 {background-color: #9FF;}
 .reporter8 {background-color: #F9F;}
 .reporter9 {background-color: #FF9;}
+.reporter10 {background-color: #900;}
+.reporter11 {background-color: #090;}
 </style>
 </head>
 
