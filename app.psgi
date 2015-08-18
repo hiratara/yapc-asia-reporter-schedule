@@ -211,7 +211,7 @@ sub _summary_reporter ($$) {
 
     # How much?
     $summary{$_}{ratio} = int (
-        100 * $summary{$_}{duration} / $total_duration
+        100 * $summary{$_}{fee_duration} / $total_duration + 0.5
     ) for keys %summary;
 
     \%summary;
