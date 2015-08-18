@@ -12,9 +12,11 @@ $LWP::Simple::ua->agent("X"); # DORA PERSON--
 my @reporters = do {
     my $seq = 0;
     map {
-        +{id => ++$seq, name => $_};
-    } qw(hiratara risou hiroyukim usuihiro yasutake nakamura tajitsu aoki ochi shimizu noda);
+        ++$seq;
+        $_ ne '-' ? ({id => $seq, name => $_}) : ();
+    } qw(hiratara risou hiroyukim usuihiro yasutake nakamura tajitsu aoki ochi - noda);
 };
+my @free_reporter_ids = qw(11);
 
 my %splited_talks = (
     '22957e9c-1872-11e5-aca1-525412004261' => 2,
@@ -190,6 +192,8 @@ sub _load_assigned ($) {
     \%result;
 }
 
+sub _is_reporter_free ($) { scalar grep { $_[0] == $_ } @free_reporter_ids }
+
 sub _summary_reporter ($$) {
     my ($tables, $assigned) = @_;
 
@@ -199,7 +203,10 @@ sub _summary_reporter ($$) {
         my $reporter_id = $assigned->{$info->{id}} or return;
 
         $summary{$reporter_id}{duration} += $info->{duration};
-        $total_duration += $info->{duration};
+        unless (_is_reporter_free($reporter_id)) {
+            $summary{$reporter_id}{fee_duration} += $info->{duration};
+            $total_duration += $info->{duration};
+        }
     } $tables;
 
     # How much?
